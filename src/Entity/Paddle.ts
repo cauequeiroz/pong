@@ -1,4 +1,4 @@
-import { Application, Graphics } from "pixi.js";
+import { Application, Graphics, Rectangle } from "pixi.js";
 import { theme } from '../theme';
 
 export abstract class Paddle {
@@ -25,6 +25,10 @@ export abstract class Paddle {
 
   public getElement(): Graphics {
     return this.element;
+  }
+
+  public getBounds(): Rectangle {
+    return this.element.getBounds();
   }
 
   public abstract defineElementPosition(): void;

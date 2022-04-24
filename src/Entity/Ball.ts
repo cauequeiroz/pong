@@ -1,4 +1,4 @@
-import { Application, Graphics } from "pixi.js";
+import { Application, Graphics, Rectangle } from "pixi.js";
 import { theme } from '../theme';
 
 export class Ball {
@@ -32,6 +32,10 @@ export class Ball {
     return this.element;
   }
 
+  public getBounds(): Rectangle {
+    return this.element.getBounds();
+  }
+
   public update(time: number) {
     const ball = this.getElement();
     const screenWidth = this.application.screen.width;
@@ -59,5 +63,13 @@ export class Ball {
     if (ball.y > screenHeight - (ball.height / 2)) {
       this.ySpeed = -Math.abs(this.ySpeed);
     }
+  }
+
+  public collisionWithLeftPaddle() {
+    this.xSpeed = Math.abs(this.xSpeed);
+  }
+
+  public collisionWithRightPaddle() {
+    this.xSpeed = -Math.abs(this.xSpeed);
   }
 }
