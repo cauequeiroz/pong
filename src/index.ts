@@ -11,6 +11,4 @@ const app = new Application({
   antialias: true
 });
 
-const gameScene = new GameScene(app.screen.width, app.screen.height);
-
-app.stage.addChild(gameScene);
+app.stage.addChild(new GameScene(app));
