@@ -7,7 +7,8 @@ const app = new Application({
   autoDensity: true,
   backgroundColor: 0xffffff,
   width: 1000,
-  height: 700
+  height: 700,
+  antialias: true
 });
 
 const gameScene = new Scene(app.screen.width, app.screen.height);

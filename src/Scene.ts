@@ -8,8 +8,8 @@ export class Scene extends Container {
   private readonly screenHeight: number;
 
   private ball: Graphics;
-  private ball_x_speed: number = 5;
-  private ball_y_speed: number = 5;
+  private ball_x_speed: number = 10;
+  private ball_y_speed: number = 10;
 
   private button: Graphics;
   private leftPaddle: Graphics;
@@ -123,37 +123,43 @@ export class Scene extends Container {
     this.ball.x = this.ball.x + this.ball_x_speed * time;
     this.ball.y = this.ball.y + this.ball_y_speed * time;
 
+    // Check ball agains paddles
+    if (this.checkCollision(this.ball.getBounds(), this.leftPaddle.getBounds())) {
+      this.ball_x_speed = Math.abs(this.ball_x_speed);
+      this.pongHitSound.play();
+      return;
+    }
+    
+    if (this.checkCollision(this.ball.getBounds(), this.rightPaddle.getBounds())) {
+      this.ball_x_speed = Math.abs(this.ball_x_speed) * -1;
+      this.pongHitSound.play();
+      return;
+    }
+
     // Check ball against walls
     if (this.ball.x > this.screenWidth - (this.ball.width / 2)) {
-      this.ball_x_speed *= -1;
+      this.ball_x_speed = Math.abs(this.ball_x_speed) * -1;
       this.heroScore += 1;
       this.heroScoreText.text = `Hero: ${this.heroScore}`; 
       this.pongSound.play();
     }
 
     if (this.ball.y > this.screenHeight - (this.ball.height / 2)) {
-      this.ball_y_speed *= -1;
+      this.ball_y_speed = Math.abs(this.ball_y_speed) * -1;
       this.pongSound.play();
     }
 
     if (this.ball.x < 0 + (this.ball.width / 2)) {
-      this.ball_x_speed *= -1;
+      this.ball_x_speed = Math.abs(this.ball_x_speed);
       this.enemyScore += 1;
       this.enemyScoreText.text = `Enemy: ${this.enemyScore}`;
       this.pongSound.play();
     }
 
     if (this.ball.y < 0 + (this.ball.height / 2)) {
-      this.ball_y_speed *= -1;
+      this.ball_y_speed = Math.abs(this.ball_y_speed);
       this.pongSound.play();
-    }
-
-    // Check ball agains paddles
-    if (this.checkCollision(this.ball.getBounds(), this.leftPaddle.getBounds())
-      ||this.checkCollision(this.ball.getBounds(), this.rightPaddle.getBounds())) {
-      this.ball_x_speed *= -1;
-      this.pongHitSound.play();
-    }
+    }  
   }
 
   private checkCollision(rect1: Rectangle, rect2: Rectangle): boolean {
