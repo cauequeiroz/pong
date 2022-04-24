@@ -3,6 +3,7 @@ import { Ball } from "./Entity/Ball";
 import { LeftPaddle } from "./Entity/LeftPaddle";
 import { RightPaddle } from "./Entity/RightPaddle";
 import { CollisionSystem } from "./System/CollisionSystem";
+import { KeyboardSystem } from "./System/KeyboardSystem";
 
 export class GameScene extends Container {
   private application: Application;
@@ -12,19 +13,21 @@ export class GameScene extends Container {
   private rightPaddle: RightPaddle;
 
   private collisionSystem: CollisionSystem;
+  private keyboardSystem: KeyboardSystem;
 
   constructor(application: Application) {
     super();
     
     this.application = application;
+    
+    // Create systems
+    this.collisionSystem = new CollisionSystem();
+    this.keyboardSystem = new KeyboardSystem();
 
     // Create entities
     this.ball = new Ball(this.application);
-    this.leftPaddle = new LeftPaddle(this.application);
+    this.leftPaddle = new LeftPaddle(this.application, this.keyboardSystem);
     this.rightPaddle = new RightPaddle(this.application);
-
-    // Create systems
-    this.collisionSystem = new CollisionSystem();
     
     // Add to game
     this.addChild(this.ball.getElement());

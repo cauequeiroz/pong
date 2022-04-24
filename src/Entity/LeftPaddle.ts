@@ -1,9 +1,14 @@
 import { Application } from "pixi.js";
+import { KeyboardSystem } from "../System/KeyboardSystem";
 import { Paddle } from "./Paddle";
 
 export class LeftPaddle extends Paddle {
-  constructor(application: Application) {
+  private keyboard: KeyboardSystem;
+
+  constructor(application: Application, keyboard: KeyboardSystem) {
     super(application);
+
+    this.keyboard = keyboard;
   }
 
   public defineElementPosition(): void {
@@ -17,12 +22,12 @@ export class LeftPaddle extends Paddle {
     const paddle = this.getElement();
     const screenHeight = this.application.screen.height;
 
-    paddle.y += this.ySpeed * time;
+    if (this.keyboard.isKeyPressed('ArrowUp') && paddle.y > 0) {
+      paddle.y += -Math.abs(this.ySpeed) * time;
+    }
 
-    if (paddle.y < 0) {
-      this.ySpeed = Math.abs(this.ySpeed);
-    } else if (paddle.y > screenHeight - paddle.height) {
-      this.ySpeed = -Math.abs(this.ySpeed);
+    if (this.keyboard.isKeyPressed('ArrowDown') && paddle.y < screenHeight - paddle.height) {
+      paddle.y += Math.abs(this.ySpeed) * time;
     }
   }
 }
