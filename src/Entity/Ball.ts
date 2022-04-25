@@ -51,13 +51,13 @@ export class Ball {
     // Collision against left wall
     if (ball.x < 0 + (ball.width / 2)) {
       this.xSpeed = Math.abs(this.xSpeed);
-      this.scoreSystem.upPlayerOneScore();
+      this.scoreSystem.upPlayerTwoScore();
     }
 
     // Collision against right wall
     if (ball.x > screenWidth - (ball.width / 2)) {
       this.xSpeed = -Math.abs(this.xSpeed);
-      this.scoreSystem.upPlayerTwoScore();
+      this.scoreSystem.upPlayerOneScore();
     }
     
     // Collision against top wall
