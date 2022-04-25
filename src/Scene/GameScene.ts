@@ -2,8 +2,7 @@ import { Application, Container } from "pixi.js";
 import { Ball } from "../Entity/Ball";
 import { LeftPaddle } from "../Entity/Paddle/LeftPaddle";
 import { RightPaddle } from "../Entity/Paddle/RightPaddle";
-import { PlayerOneScore } from "../Entity/PlayerScore/PlayerOneScore";
-import { PlayerTwoScore } from "../Entity/PlayerScore/PlayerTwoScore";
+import { PlayerScore } from "../Entity/PlayerScore";
 import { CollisionSystem } from "../System/CollisionSystem";
 import { KeyboardSystem } from "../System/KeyboardSystem";
 import { ScoreSystem } from "../System/ScoreSystem";
@@ -14,8 +13,7 @@ export class GameScene extends Container {
   private ball: Ball;
   private leftPaddle: LeftPaddle;
   private rightPaddle: RightPaddle;
-  private playerOneScore: PlayerOneScore;
-  private playerTwoScore: PlayerOneScore;
+  private playerScore: PlayerScore;
   
   private collisionSystem: CollisionSystem;
   private keyboardSystem: KeyboardSystem;
@@ -35,15 +33,13 @@ export class GameScene extends Container {
     this.ball = new Ball(this.application, this.scoreSystem);
     this.leftPaddle = new LeftPaddle(this.application, this.keyboardSystem);
     this.rightPaddle = new RightPaddle(this.application);
-    this.playerOneScore = new PlayerOneScore(this.application, this.scoreSystem);
-    this.playerTwoScore = new PlayerTwoScore(this.application, this.scoreSystem);
+    this.playerScore = new PlayerScore(this.application, this.scoreSystem);
     
     // Add to game
     this.addChild(this.ball.getElement());
     this.addChild(this.leftPaddle.getElement());
     this.addChild(this.rightPaddle.getElement());
-    this.addChild(this.playerOneScore.getElement());
-    this.addChild(this.playerTwoScore.getElement());
+    this.addChild(this.playerScore.getElement());
 
     // Ticker
     this.application.ticker.add(this.update, this);
@@ -53,8 +49,7 @@ export class GameScene extends Container {
     this.ball.update(time);
     this.leftPaddle.update(time);
     this.rightPaddle.update(time);
-    this.playerOneScore.update();
-    this.playerTwoScore.update();
+    this.playerScore.update();
     
     if (this.collisionSystem.checkCollision(this.ball.getBounds(), this.leftPaddle.getBounds())) {
       this.ball.collisionWithLeftPaddle();
