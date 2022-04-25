@@ -1,4 +1,6 @@
 export const theme = {
-  ballColor: 0x2c3e50,
-  paddleColor: 0x2c3e50,
+  backgroundColor: 0x000000,
+  ballColor: 0xFFFFFF,
+  paddleColor: 0xFFFFFF,
+  scoreTextColor: 0xFFFFFF
 };

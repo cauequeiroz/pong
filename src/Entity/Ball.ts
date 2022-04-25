@@ -20,7 +20,7 @@ export class Ball {
   private createElement(): Graphics {
     const ball = new Graphics();
     ball.beginFill(theme.ballColor);
-    ball.drawCircle(0, 0, 20);
+    ball.drawRect(0, 0, 20, 20);
     ball.endFill();
 
     ball.x = this.application.screen.width / 2;
@@ -58,7 +58,7 @@ export class Ball {
     }
     
     // Collision against top wall
-    if (ball.y < 0 + (ball.height / 2)) {
+    if (ball.y < 0) {
       this.ySpeed = Math.abs(this.ySpeed);
     }  
 

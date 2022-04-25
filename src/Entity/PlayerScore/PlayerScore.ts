@@ -1,5 +1,6 @@
 import { Application, Text, TextStyle } from "pixi.js";
 import { ScoreSystem } from "../../System/ScoreSystem";
+import { theme } from "../../theme";
 
 export abstract class PlayerScore {
   private element: Text;
@@ -19,7 +20,9 @@ export abstract class PlayerScore {
 
   private createElement(): Text {
     const style = new TextStyle({
-      fontFamily: "Courier New"
+      fontFamily: "Courier New",
+      fontWeight: "900",
+      fill: theme.scoreTextColor
     });
 
     return new Text(this.getScoreText(), style);
