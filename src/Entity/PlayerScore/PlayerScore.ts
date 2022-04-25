@@ -1,5 +1,5 @@
 import { Application, Text, TextStyle } from "pixi.js";
-import { ScoreSystem } from "../System/ScoreSystem";
+import { ScoreSystem } from "../../System/ScoreSystem";
 
 export abstract class PlayerScore {
   private element: Text;
@@ -15,9 +15,6 @@ export abstract class PlayerScore {
     this.score = this.scoreSystem.getPlayerOneScore();
     this.element = this.createElement();
     this.defineElementPosition();
-
-    // REMOVE
-    console.log(this.application);
   }
 
   private createElement(): Text {
@@ -25,9 +22,7 @@ export abstract class PlayerScore {
       fontFamily: "Courier New"
     });
 
-    const heroScore = new Text(this.getScoreText(), style);
-
-    return heroScore;
+    return new Text(this.getScoreText(), style);
   }
 
   public getElement(): Text {

@@ -1,10 +1,6 @@
-import { Application } from "pixi.js";
 import { Paddle } from "./Paddle";
 
 export class RightPaddle extends Paddle {
-  constructor(application: Application) {
-    super(application);
-  }
 
   public defineElementPosition(): void {
     const paddle = this.getElement();

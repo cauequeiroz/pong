@@ -1,5 +1,9 @@
+type State = {
+  [index:string]: boolean
+};
+
 export class KeyboardSystem {
-  private state: { [index:string]: boolean };
+  private state: State;
 
   constructor() {
     this.state = {};

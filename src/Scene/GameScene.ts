@@ -1,9 +1,9 @@
 import { Application, Container } from "pixi.js";
 import { Ball } from "../Entity/Ball";
-import { LeftPaddle } from "../Entity/LeftPaddle";
-import { PlayerOneScore } from "../Entity/PlayerOneScore";
-import { PlayerTwoScore } from "../Entity/PlayerTwoScore";
-import { RightPaddle } from "../Entity/RightPaddle";
+import { LeftPaddle } from "../Entity/Paddle/LeftPaddle";
+import { RightPaddle } from "../Entity/Paddle/RightPaddle";
+import { PlayerOneScore } from "../Entity/PlayerScore/PlayerOneScore";
+import { PlayerTwoScore } from "../Entity/PlayerScore/PlayerTwoScore";
 import { CollisionSystem } from "../System/CollisionSystem";
 import { KeyboardSystem } from "../System/KeyboardSystem";
 import { ScoreSystem } from "../System/ScoreSystem";
@@ -14,10 +14,9 @@ export class GameScene extends Container {
   private ball: Ball;
   private leftPaddle: LeftPaddle;
   private rightPaddle: RightPaddle;
-
   private playerOneScore: PlayerOneScore;
   private playerTwoScore: PlayerOneScore;
-
+  
   private collisionSystem: CollisionSystem;
   private keyboardSystem: KeyboardSystem;
   private scoreSystem: ScoreSystem;

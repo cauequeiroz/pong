@@ -1,6 +1,7 @@
 import { PlayerScore } from "./PlayerScore";
 
 export class PlayerTwoScore extends PlayerScore {
+  
   public getScoreText(): string {
     return `Player 2: ${this.score}`;
   }

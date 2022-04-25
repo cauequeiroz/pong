@@ -1,5 +1,5 @@
 import { Application } from "pixi.js";
-import { KeyboardSystem } from "../System/KeyboardSystem";
+import { KeyboardSystem } from "../../System/KeyboardSystem";
 import { Paddle } from "./Paddle";
 
 export class LeftPaddle extends Paddle {

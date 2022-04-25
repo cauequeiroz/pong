@@ -1,5 +1,5 @@
 import { Application, Graphics, Rectangle } from "pixi.js";
-import { theme } from '../theme';
+import { theme } from '../../theme';
 
 export abstract class Paddle {
   private element: Graphics;

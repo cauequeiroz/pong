@@ -6,7 +6,6 @@ export class Ball {
   private element: Graphics;
   private application: Application;
   private scoreSystem: ScoreSystem;
-
   private xSpeed: number;
   private ySpeed: number;
 
@@ -14,7 +13,6 @@ export class Ball {
     this.application = application;
     this.scoreSystem = scoreSystem;
     this.element = this.createElement();
-
     this.xSpeed = 5;
     this.ySpeed = 5;
   }

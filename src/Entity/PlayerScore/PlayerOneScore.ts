@@ -1,13 +1,7 @@
-import { Application } from "pixi.js";
-import { ScoreSystem } from "../System/ScoreSystem";
 import { PlayerScore } from "./PlayerScore";
 
 export class PlayerOneScore extends PlayerScore {
   
-  constructor(application: Application, scoreSystem: ScoreSystem) {
-    super(application, scoreSystem);
-  }
-
   public getScoreText(): string {
     return `Player 1: ${this.score}`;
   }
