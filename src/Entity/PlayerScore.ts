@@ -1,19 +1,21 @@
 import { Application, Text, TextStyle } from "pixi.js";
+import { CoreMechanics } from "../System/CoreMechanics";
 import { ScoreSystem } from "../System/ScoreSystem";
 import { theme } from "../theme";
 
 export class PlayerScore {
   private element: Text;
+  private playerOneScore: number;
+  private playerTwoScore: number;
   
   protected application: Application;
-  protected scoreSystem: ScoreSystem;
-  
-  protected playerOneScore: number;
-  protected playerTwoScore: number;
+  protected scoreSystem: ScoreSystem;  
 
-  constructor(application: Application, scoreSystem: ScoreSystem) {
-    this.application = application;
-    this.scoreSystem = scoreSystem;
+  constructor() {
+    const coreMechanics = CoreMechanics.getInstance();
+
+    this.application = coreMechanics.mechanics.application;
+    this.scoreSystem = coreMechanics.mechanics.score;
 
     this.playerOneScore = this.scoreSystem.getPlayerOneScore();
     this.playerTwoScore = this.scoreSystem.getPlayerTwoScore();

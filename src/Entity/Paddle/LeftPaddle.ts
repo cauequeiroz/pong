@@ -1,4 +1,4 @@
-import { Application } from "pixi.js";
+import { CoreMechanics } from "../../System/CoreMechanics";
 import { KeyboardSystem } from "../../System/KeyboardSystem";
 import { Paddle } from "./Paddle";
 
@@ -6,10 +6,10 @@ export class LeftPaddle extends Paddle {
   private keyboard: KeyboardSystem;
   protected override ySpeed: number;
 
-  constructor(application: Application, keyboard: KeyboardSystem) {
-    super(application);
+  constructor() {
+    super();
 
-    this.keyboard = keyboard;
+    this.keyboard = CoreMechanics.getInstance().mechanics.keyboard;
     this.ySpeed = 10;
   }
 

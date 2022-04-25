@@ -1,4 +1,5 @@
 import { Application, Graphics, Rectangle } from "pixi.js";
+import { CoreMechanics } from "../../System/CoreMechanics";
 import { theme } from '../../theme';
 
 export abstract class Paddle {
@@ -7,8 +8,10 @@ export abstract class Paddle {
   protected application: Application; 
   protected ySpeed: number;
 
-  constructor(application: Application) {
-    this.application = application;
+  constructor() {
+    const coreMechanics = CoreMechanics.getInstance();
+
+    this.application = coreMechanics.mechanics.application;
     this.ySpeed = 5;
     
     this.element = this.createElement();

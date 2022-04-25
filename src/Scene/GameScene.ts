@@ -4,36 +4,34 @@ import { LeftPaddle } from "../Entity/Paddle/LeftPaddle";
 import { RightPaddle } from "../Entity/Paddle/RightPaddle";
 import { PlayerScore } from "../Entity/PlayerScore";
 import { CollisionSystem } from "../System/CollisionSystem";
+import { CoreMechanics } from "../System/CoreMechanics";
 import { KeyboardSystem } from "../System/KeyboardSystem";
 import { ScoreSystem } from "../System/ScoreSystem";
 
 export class GameScene extends Container {
-  private application: Application;
-
   private ball: Ball;
   private leftPaddle: LeftPaddle;
   private rightPaddle: RightPaddle;
-  private playerScore: PlayerScore;
-  
+  private playerScore: PlayerScore;  
   private collisionSystem: CollisionSystem;
-  private keyboardSystem: KeyboardSystem;
-  private scoreSystem: ScoreSystem;
 
   constructor(application: Application) {
     super();
     
-    this.application = application;
-    
+    // Setup core mechanics
+    const coreMechanics = CoreMechanics.getInstance();
+    coreMechanics.addMechanic('application', application);
+    coreMechanics.addMechanic('keyboard', new KeyboardSystem());
+    coreMechanics.addMechanic('score', new ScoreSystem());
+
     // Create systems
     this.collisionSystem = new CollisionSystem();
-    this.keyboardSystem = new KeyboardSystem();
-    this.scoreSystem = new ScoreSystem();
 
     // Create entities
-    this.ball = new Ball(this.application, this.scoreSystem);
-    this.leftPaddle = new LeftPaddle(this.application, this.keyboardSystem);
-    this.rightPaddle = new RightPaddle(this.application);
-    this.playerScore = new PlayerScore(this.application, this.scoreSystem);
+    this.ball = new Ball();
+    this.leftPaddle = new LeftPaddle();
+    this.rightPaddle = new RightPaddle();
+    this.playerScore = new PlayerScore();
     
     // Add to game
     this.addChild(this.ball.getElement());
@@ -42,7 +40,7 @@ export class GameScene extends Container {
     this.addChild(this.playerScore.getElement());
 
     // Ticker
-    this.application.ticker.add(this.update, this);
+    application.ticker.add(this.update, this);
   }
 
   private update(time: number) {

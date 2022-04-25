@@ -1,4 +1,5 @@
 import { Application, Graphics, Rectangle } from "pixi.js";
+import { CoreMechanics } from "../System/CoreMechanics";
 import { ScoreSystem } from "../System/ScoreSystem";
 import { theme } from '../theme';
 
@@ -9,9 +10,11 @@ export class Ball {
   private xSpeed: number;
   private ySpeed: number;
 
-  constructor(application: Application, scoreSystem: ScoreSystem) {
-    this.application = application;
-    this.scoreSystem = scoreSystem;
+  constructor() {
+    const coreMechanics = CoreMechanics.getInstance();
+
+    this.application = coreMechanics.mechanics.application;
+    this.scoreSystem = coreMechanics.mechanics.score;
     this.element = this.createElement();
     this.xSpeed = 5;
     this.ySpeed = 5;
