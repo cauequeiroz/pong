@@ -4,11 +4,13 @@ import { Paddle } from "./Paddle";
 
 export class LeftPaddle extends Paddle {
   private keyboard: KeyboardSystem;
+  protected override ySpeed: number;
 
   constructor(application: Application, keyboard: KeyboardSystem) {
     super(application);
 
     this.keyboard = keyboard;
+    this.ySpeed = 10;
   }
 
   public defineElementPosition(): void {
