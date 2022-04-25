@@ -1,9 +1,9 @@
 import { Application, Container } from "pixi.js";
-import { Ball } from "./Entity/Ball";
-import { LeftPaddle } from "./Entity/LeftPaddle";
-import { RightPaddle } from "./Entity/RightPaddle";
-import { CollisionSystem } from "./System/CollisionSystem";
-import { KeyboardSystem } from "./System/KeyboardSystem";
+import { Ball } from "../Entity/Ball";
+import { LeftPaddle } from "../Entity/LeftPaddle";
+import { RightPaddle } from "../Entity/RightPaddle";
+import { CollisionSystem } from "../System/CollisionSystem";
+import { KeyboardSystem } from "../System/KeyboardSystem";
 
 export class GameScene extends Container {
   private application: Application;
