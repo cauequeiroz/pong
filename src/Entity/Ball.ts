@@ -1,15 +1,18 @@
 import { Application, Graphics, Rectangle } from "pixi.js";
+import { ScoreSystem } from "../System/ScoreSystem";
 import { theme } from '../theme';
 
 export class Ball {
   private element: Graphics;
   private application: Application;
+  private scoreSystem: ScoreSystem;
 
   private xSpeed: number;
   private ySpeed: number;
 
-  constructor(application: Application) {
+  constructor(application: Application, scoreSystem: ScoreSystem) {
     this.application = application;
+    this.scoreSystem = scoreSystem;
     this.element = this.createElement();
 
     this.xSpeed = 5;
@@ -47,11 +50,13 @@ export class Ball {
     // Collision against left wall
     if (ball.x < 0 + (ball.width / 2)) {
       this.xSpeed = Math.abs(this.xSpeed);
+      this.scoreSystem.upPlayerOneScore();
     }
 
     // Collision against right wall
     if (ball.x > screenWidth - (ball.width / 2)) {
       this.xSpeed = -Math.abs(this.xSpeed);
+      this.scoreSystem.upPlayerTwoScore();
     }
     
     // Collision against top wall

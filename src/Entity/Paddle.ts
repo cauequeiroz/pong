@@ -3,6 +3,7 @@ import { theme } from '../theme';
 
 export abstract class Paddle {
   private element: Graphics;
+  
   protected application: Application; 
   protected ySpeed: number;
 
